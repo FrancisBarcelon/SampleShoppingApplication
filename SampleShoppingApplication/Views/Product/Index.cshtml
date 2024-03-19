@@ -1,0 +1,79 @@
+﻿@using SampleShoppingApplication.Data;
+@model IEnumerable<Product>
+
+
+
+
+    <div class="content">
+
+        <h2>Please see below your Cart List</h2>
+        <hr />
+
+        <div class="row">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Messsage"]
+            </div>
+                
+        }
+
+
+        <div class="col-12">
+            <a asp-action ="Create" class="btn btn-primary mb-2">Add to Cart</a>
+        </div>
+        <div class="col-12">
+
+            <table class="table table-bordered table table-hover table-sm font-sm">
+                <colgroup>
+                    <col class="col-3" />
+                    <col class="col-7"/>
+                    <col class="col-3" />
+                    <col class="col-3" />
+                    <col class="col-3" />
+                    <col class="col-3" />
+
+                    </colgroup>
+                    <thead class="bg-danger text-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Cost</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var product in Model)
+                        {
+                            <tr>
+                                <td>@product.Id</td>
+                                 <td>@product.Name</td>
+                                 <td>@product.Cost</td>
+                                 <td>@product.Quantity</td>
+                                 <td>@product.Amount</td>
+                                 <td>
+                                     <a asp-action="Delete" asp-route-id="@product.Id" class=" btn btn-danger">Delete</a>
+                                 </td>
+                            </tr>
+
+                           
+                    
+                        }
+
+
+                    </tbody>
+
+
+            </table>
+
+            
+
+        </div>
+
+
+
+       
+    </div>
